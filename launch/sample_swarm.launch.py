@@ -33,7 +33,7 @@ def generate_launch_description():
     world_name = LaunchConfiguration('world_name')
     world_name_arg = DeclareLaunchArgument(
           'world_name',
-          default_value='empty_world.world',
+          default_value='dense_obstacles.world',
           description='SDF world file name. [empty_world.world or turtlebot3_world.world]')
 
     # Includes gazebo_ros launch for gazebo
