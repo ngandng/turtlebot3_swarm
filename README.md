@@ -7,6 +7,22 @@
 - `<robot_prefix>/odom`
 - `<robot_prefix>/scan`
 
+## Prerequisites
+```
+sudo apt install ros-$ROS_DISTRO-gazebo-ros ros-$ROS_DISTRO-gazebo-ros-pkgs
+sudo apt install ros-$ROS_DISTRO-xacro
+sudo apt install ros-$ROS_DISTRO-turtlebot3-msgs
+
+```
+
+## Installation
+```
+mkdir -p ~/turtlebot3_ws/src
+cd ~/turtlebot3_ws/src
+git clone git@github.com:duynamrcv/turtlebot3_swarm.git
+cd ~/turtlebot3_ws/
+colcon build --symlink-install
+```
 
 ## Demo
 * Launch the empty environment with 3 Waffle robots
