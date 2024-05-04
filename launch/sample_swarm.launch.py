@@ -100,10 +100,21 @@ def generate_launch_description():
             arguments = ["0", "0", "0", "0", "0", "0", "world", "{}/odom".format(robot_prefix)]
         )
 
+        # # Controller
+        # controller = Node(
+        #     package="turtlebot3_swarm",
+        #     executable="turtlebot3_nmpc_flocking.py",
+        #     name="controller"+str(index),
+        #     parameters=[{
+        #         'name': robot_prefix
+        #     }],
+        # )
+
         # Add the commands to the launch description
         ld.add_action(robot_state_publisher)
         ld.add_action(start_gazebo_ros_spawner_cmd)
         ld.add_action(broadcaster)
+        # ld.add_action(controller)
 
     if use_rviz:
         rviz = Node(
