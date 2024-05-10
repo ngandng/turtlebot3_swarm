@@ -10,19 +10,22 @@ find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
 
 # Install Python modules
-# ament_python_install_package(${PROJECT_NAME})
+ament_python_install_package(${PROJECT_NAME})
 
-# # Install Python executables
-# install(PROGRAMS
-#   ${PROJECT_NAME}/turtlebot3_nmpc_flocking.py
-#   DESTINATION lib/${PROJECT_NAME}
-# )
+# Install Python executables
+install(PROGRAMS
+  ${PROJECT_NAME}/turtlebot3_controller.py
+  DESTINATION lib/${PROJECT_NAME}/
+)
+
+install(DIRECTORY launch meshes urdf worlds models rviz
+  DESTINATION share/${PROJECT_NAME}/
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -34,9 +37,5 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-
-install(DIRECTORY launch meshes urdf worlds models rviz
-  DESTINATION share/${PROJECT_NAME}/
-)
 
 ament_package()

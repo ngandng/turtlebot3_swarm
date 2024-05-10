@@ -88,6 +88,9 @@
                izz="1.4612727e-02" />
     </inertial>
   </link>
+  <gazebo reference="base_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
 
   <joint name="wheel_left_joint" type="continuous">
     <parent link="base_link"/>

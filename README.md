@@ -12,7 +12,6 @@
 sudo apt install ros-$ROS_DISTRO-gazebo-ros ros-$ROS_DISTRO-gazebo-ros-pkgs
 sudo apt install ros-$ROS_DISTRO-xacro
 sudo apt install ros-$ROS_DISTRO-turtlebot3-msgs
-
 ```
 
 ## Installation
@@ -28,6 +27,11 @@ colcon build --symlink-install
 * Launch the empty environment with 3 Waffle robots
 ```
 ros2 launch turtlebot3_swarm sample_swarm.launch.py 
+```
+
+* Send a sample command
+```
+ros2 run turtlebot3_swarm turtlebot3_controller.py --ros-args -p name:=robot_0
 ```
 ## Custom your space
 

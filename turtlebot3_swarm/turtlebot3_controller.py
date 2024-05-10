@@ -1,4 +1,7 @@
+#! /usr/bin/env python
+
 import rclpy
+import rclpy.logging
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
@@ -7,7 +10,7 @@ from nav_msgs.msg import Odometry
 class NMPCFlocking(Node):
 
     def __init__(self):
-        super().__init__('nmpc_flocking')
+        super().__init__('controller')
         self.rate = 10  # Hz
         self.name = self.declare_parameter('name', 'turtlebot3').get_parameter_value().string_value
         
@@ -24,6 +27,7 @@ class NMPCFlocking(Node):
 
 def main(args=None):
     rclpy.init(args=args)
+    print("[INFO] Start node")
 
     controller = NMPCFlocking()
 
