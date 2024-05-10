@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 import rclpy
 import rclpy.logging
@@ -9,7 +9,7 @@ from sensor_msgs.msg import LaserScan
 
 import cv2
 import numpy as np
-from turtlebot3_swarm.utils import *
+from turtlebot3_swarm.global_reference import *
 
 class PredictiveController(Node):
 
@@ -41,12 +41,7 @@ class PredictiveController(Node):
     def timer_callback(self):
         self.get_logger().info("Running .....")
         
-        # Process scan data
-        sensing_map = scan_data_to_array(self.scan, disc_size=0.1)
-        if sensing_map.shape[0] != 0 and sensing_map.shape[1] != 0:
-            self.get_logger().info("Sensing image shape: {}".format(sensing_map.shape))
-            cv2.imwrite("map.png", sensing_map)
-
+        # Source code to run 
 
         # Send control signal
         msg_vel = Twist()
