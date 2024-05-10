@@ -12,9 +12,12 @@ from launch.substitutions import Command
 from launch.substitutions import PythonExpression
 from launch_ros.actions import Node
 
-STARTS = [[-0.5, 0.0, 0.0],
-          [-0.5, 1.5, 0.0],
-          [-1.0, 1.0, 0.0]]
+# x, y, theta
+# STARTS = [[-0.5, 0.0, 0.0],
+#           [-0.5, 1.5, 0.0],
+#           [-1.0, 1.0, 0.0]]
+
+STARTS = [[0.0, 0.0, 0.0]]
 use_rviz = True
 
 pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
