@@ -24,15 +24,20 @@ colcon build --symlink-install
 ```
 
 ## Demo
-* Launch the empty environment with 3 Waffle robots
+### Launch the empty environment with 1 Waffle robots
+```
+ros2 launch turtlebot3_swarm standalone_world.launch.py 
+```
+Use rviz to select goal
+### Launch the empty environment with 3 Waffle robots
 ```
 ros2 launch turtlebot3_swarm sample_swarm.launch.py 
 ```
-
-* Send a sample command
+Send a sample command
 ```
 ros2 run turtlebot3_swarm turtlebot3_controller.py --ros-args -p name:=robot_0
 ```
+
 ## Custom your space
 
 - Launch the standalone simulation, no robot is spawned
