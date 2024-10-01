@@ -18,7 +18,7 @@ from launch_ros.actions import Node
 #           [-1.0, 1.0, 0.0]]
 
 STARTS = [[0.0, 0.0, 0.0]]
-use_rviz = False
+use_rviz = True
 
 pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
 pkg_turtlebot3_swarm = get_package_share_directory('turtlebot3_swarm')
@@ -103,10 +103,21 @@ def generate_launch_description():
             arguments = ["0", "0", "0", "0", "0", "0", "world", "{}/odom".format(robot_prefix)]
         )
 
+        # Controller
+        controller = Node(
+            package='turtlebot3_swarm',
+            executable='move_to_target_node',
+            name='controller'+str(index),
+            parameters=[{
+                'name': robot_prefix
+            }],
+        )
+
         # Add the commands to the launch description
         ld.add_action(robot_state_publisher)
         ld.add_action(start_gazebo_ros_spawner_cmd)
         ld.add_action(broadcaster)
+        ld.add_action(controller)
 
     if use_rviz:
         rviz = Node(

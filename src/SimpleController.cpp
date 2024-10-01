@@ -3,14 +3,19 @@
 SimpleController::SimpleController() : Node("simple_controller")
 {
     setParameters();
-    velPublisher_     = this->create_publisher<geometry_msgs::msg::Twist>("cmd_vel", 10);
+    velPublisher_     = this->create_publisher<geometry_msgs::msg::Twist>(prefix_ + "/cmd_vel", 10);
     odomSubscription_ = this->create_subscription<nav_msgs::msg::Odometry>(
-        "odom", 50, std::bind(&SimpleController::odometryCallback, this, _1));
+        prefix_ + "/odom", 50, std::bind(&SimpleController::odometryCallback, this, _1));
+    goalSubscription_ = this->create_subscription<geometry_msgs::msg::PoseStamped>(
+        "/goal_pose", 50, std::bind(&SimpleController::goalCallback, this, _1));
 
     timer_ = this->create_wall_timer(100ms, std::bind(&SimpleController::timerCallback, this));
 }
 
-void SimpleController::setParameters() {}
+void SimpleController::setParameters()
+{
+    prefix_ = this->declare_parameter("name", "");
+}
 
 void SimpleController::timerCallback()
 {
@@ -52,7 +57,7 @@ void SimpleController::timerCallback()
     if (alpha > M_PI / 2 || alpha < -M_PI / 2) v = -v;
 
     geometry_msgs::msg::Twist vel;
-    vel.linear.x = v;
+    vel.linear.x  = v;
     vel.angular.z = w;
     velPublisher_->publish(vel);
 }

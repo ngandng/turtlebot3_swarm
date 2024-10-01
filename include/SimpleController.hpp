@@ -23,6 +23,7 @@ private:
     void odometryCallback(const nav_msgs::msg::Odometry& msg);
     void goalCallback(const geometry_msgs::msg::PoseStamped& msg);
 
+    std::string prefix_;
     geometry_msgs::msg::Pose2D pose_;
     std::vector<geometry_msgs::msg::Pose2D> goals_;  // x, y, theta
 
