@@ -15,6 +15,9 @@ SimpleController::SimpleController() : Node("simple_controller")
 void SimpleController::setParameters()
 {
     prefix_ = this->declare_parameter("name", "");
+    kRho_   = this->declare_parameter("k_rho", 0.9);
+    kAlpha_ = this->declare_parameter("k_alpha", 1.0);
+    kBeta_  = this->declare_parameter("k_beta", -0.3);
 }
 
 void SimpleController::timerCallback()
@@ -41,18 +44,20 @@ void SimpleController::timerCallback()
 
     double rho   = sqrt(xDiff * xDiff + yDiff * yDiff);
     double alpha = atan2(yDiff, xDiff) - pose_.theta;
+
     while (alpha > M_PI)
         alpha -= 2 * M_PI;
     while (alpha < -M_PI)
         alpha += 2 * M_PI;
+
     double beta = goal.theta - pose_.theta - alpha;
     while (beta > M_PI)
         beta -= 2 * M_PI;
     while (beta < -M_PI)
         beta += 2 * M_PI;
 
-    double v = 0.9 * rho;
-    double w = 1.5 * alpha + -0.3 * beta;
+    double v = kRho_ * rho;
+    double w = kAlpha_ * alpha + kBeta_ * beta;
 
     if (alpha > M_PI / 2 || alpha < -M_PI / 2) v = -v;
 

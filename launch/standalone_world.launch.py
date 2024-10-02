@@ -109,7 +109,10 @@ def generate_launch_description():
             executable='move_to_target_node',
             name='controller'+str(index),
             parameters=[{
-                'name': robot_prefix
+                'name': robot_prefix,
+                'k_rho': 0.9,
+                'k_alpha': 1.5,
+                'k_beta': -0.8
             }],
         )
 

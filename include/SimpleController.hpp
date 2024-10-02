@@ -24,6 +24,7 @@ private:
     void goalCallback(const geometry_msgs::msg::PoseStamped& msg);
 
     std::string prefix_;
+    double kRho_, kAlpha_, kBeta_;
     geometry_msgs::msg::Pose2D pose_;
     std::vector<geometry_msgs::msg::Pose2D> goals_;  // x, y, theta
 
